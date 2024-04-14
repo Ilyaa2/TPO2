@@ -1,0 +1,35 @@
+package trigonometric;
+
+import org.example.trigonometric.Cos;
+import org.example.trigonometric.Sin;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+public class CosTest {
+
+    @Mock
+    private Sin mockSin;
+
+
+    @Test
+    void cosTest() {
+        double angle = Math.PI / 2;
+        double precision = 0.0001;
+        double sinResult = 1;
+        boolean expected = false;
+        when(mockSin.calculate(angle, precision)).thenReturn(sinResult);
+
+        Cos cos = new Cos(mockSin);
+
+        double sinDiff = Math.abs(cos.calculate(angle, precision) - Math.cos(angle));
+
+        if (sinDiff <= precision) expected = true;
+        Assertions.assertTrue(expected);
+    }
+}

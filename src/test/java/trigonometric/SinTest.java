@@ -1,3 +1,5 @@
+package trigonometric;
+
 import org.example.Main;
 import org.example.trigonometric.Sin;
 import org.junit.jupiter.api.Assertions;
