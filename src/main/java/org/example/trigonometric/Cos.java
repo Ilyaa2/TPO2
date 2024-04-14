@@ -16,14 +16,4 @@ public class Cos {
     public double calculate(double x, double precision) {
         return Math.sqrt(1 - Math.pow(sin.calculate(x, precision), 2));
     }
-
-    public double writeResultToCSV(double x, double precision, Writer out) {
-        double res = calculate(x, precision);
-        try (CSVPrinter printer = CSVFormat.DEFAULT.print(out)) {
-            printer.printRecord(x, res);
-        } catch (IOException e) {
-            System.out.println("Wrong filename");
-        }
-        return res;
-    }
 }

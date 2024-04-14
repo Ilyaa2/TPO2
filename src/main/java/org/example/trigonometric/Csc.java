@@ -17,14 +17,4 @@ public class Csc {
     public double calculate(double x, double precision) {
         return 1 / sin.calculate(x, precision);
     }
-
-    public double writeResultToCSV(double x, double precision, Writer out) {
-        double res = calculate(x, precision);
-        try (CSVPrinter printer = CSVFormat.DEFAULT.print(out)) {
-            printer.printRecord(x, res);
-        } catch (IOException e) {
-            System.out.println("Wrong filename");
-        }
-        return res;
-    }
 }

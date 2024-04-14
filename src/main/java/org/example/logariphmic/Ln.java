@@ -29,14 +29,4 @@ public class Ln {
         sum *= 2;
         return sum;
     }
-
-    public double writeResultToCSV(double x, double precision, Writer out) {
-        double res = calculate(x, precision);
-        try (CSVPrinter printer = CSVFormat.DEFAULT.print(out)) {
-            printer.printRecord(x, res);
-        } catch (IOException e) {
-            System.out.println("Wrong filename");
-        }
-        return res;
-    }
 }
