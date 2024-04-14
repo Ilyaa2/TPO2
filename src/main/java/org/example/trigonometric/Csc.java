@@ -1,5 +1,11 @@
 package org.example.trigonometric;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+
+import java.io.IOException;
+import java.io.Writer;
+
 public class Csc {
 
     private Sin sin;
@@ -10,5 +16,15 @@ public class Csc {
 
     public double calculate(double x, double precision) {
         return 1 / sin.calculate(x, precision);
+    }
+
+    public double writeResultToCSV(double x, double precision, Writer out) {
+        double res = calculate(x, precision);
+        try (CSVPrinter printer = CSVFormat.DEFAULT.print(out)) {
+            printer.printRecord(x, res);
+        } catch (IOException e) {
+            System.out.println("Wrong filename");
+        }
+        return res;
     }
 }

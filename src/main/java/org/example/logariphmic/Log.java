@@ -1,4 +1,4 @@
-package org.example.trigonometric;
+package org.example.logariphmic;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -6,15 +6,18 @@ import org.apache.commons.csv.CSVPrinter;
 import java.io.IOException;
 import java.io.Writer;
 
-public class Cos {
+public class Log {
+    private final Ln ln;
+    private final int base;
 
-    private Sin sin;
-    public Cos(Sin sin) {
-        this.sin = sin;
+    public Log(Ln ln, int base) {
+        if (base < 0) throw new ArithmeticException("Неправильное основание");
+        this.ln = ln;
+        this.base = base;
     }
 
-    public double calculate(double x, double precision) {
-        return Math.sqrt(1 - Math.pow(sin.calculate(x, precision), 2));
+    public double calculate(double x, double precision){
+        return ln.calculate(x, precision) / ln.calculate(this.base, precision);
     }
 
     public double writeResultToCSV(double x, double precision, Writer out) {
