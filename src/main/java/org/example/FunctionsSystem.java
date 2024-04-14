@@ -53,6 +53,7 @@ public class FunctionsSystem {
             result = (Math.pow((((log_3.calculate(x, precision) + log_3.calculate(x, precision)) - log_2.calculate(x, precision)) / log_3.calculate(x, precision)), 2) *
             (Math.pow(log_5.calculate(x, precision), 3) - log_2.calculate(x, precision)));
         }
+        return result;
     }
 
 }
