@@ -2,11 +2,9 @@ package org.example.trigonometric;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.example.Main;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.math.BigDecimal;
 
 public class Sin {
 

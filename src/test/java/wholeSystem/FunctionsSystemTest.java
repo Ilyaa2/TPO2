@@ -40,12 +40,6 @@ public class FunctionsSystemTest {
         double input = 0.2;
         double precision = 0.0001;
         double expectedResult = 0.2277;
-        //when(mockSin.calculate(0.2, precision)).thenReturn(Math.sin(0.2));
-        //when(mockCos.calculate(0.2, precision)).thenReturn(Math.cos(0.2));
-        //when(mockCot.calculate(0.2, precision)).thenReturn(Math.cos(0.2) / Math.sin(0.2));
-        //when(mockCsc.calculate(0.2, precision)).thenReturn(1 / Math.sin(0.2));
-        //when(mockSec.calculate(0.2, precision)).thenReturn(1 / Math.cos(0.2));
-        //when(mockTan.calculate(0.2, precision)).thenReturn(Math.tan(0.2));
 
         when(mockLog2.calculate(0.2, precision)).thenReturn(Math.log(0.2) / Math.log(2));
         when(mockLog3.calculate(0.2, precision)).thenReturn(Math.log(0.2) / Math.log(3));
@@ -56,6 +50,26 @@ public class FunctionsSystemTest {
         var result = functionsSystem.calculate(input, precision);
         var diff = Math.abs(expectedResult - result);
         //System.out.println(result);
+        Assertions.assertTrue(diff <= precision);
+    }
+
+    @Test
+    void trigonometricTest() {
+        double input = -4.202;
+        double precision = 0.0001;
+        double expectedResult = 3981.0886775189692;
+        when(mockSin.calculate(input, precision)).thenReturn(Math.sin(input));
+        when(mockCos.calculate(input, precision)).thenReturn(Math.cos(input));
+        when(mockCot.calculate(input, precision)).thenReturn(Math.cos(input) / Math.sin(input));
+        when(mockCsc.calculate(input, precision)).thenReturn(1 / Math.sin(input));
+        when(mockSec.calculate(input, precision)).thenReturn(1 / Math.cos(input));
+        when(mockTan.calculate(input, precision)).thenReturn(Math.tan(input));
+
+        FunctionsSystem functionsSystem = new FunctionsSystem(mockSin, mockCos, mockTan, mockCot, mockSec, mockCsc, mockLog3, mockLog5, mockLog2, mockLn);
+
+        var result = functionsSystem.calculate(input, precision);
+        var diff = Math.abs(expectedResult - result);
+        System.out.println(result);
         Assertions.assertTrue(diff <= precision);
     }
 }

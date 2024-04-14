@@ -51,7 +51,7 @@ public class FunctionsSystem {
                     ((cot.calculate(x, precision) - Math.pow(sec.calculate(x, precision), 2) * ((sin.calculate(x, precision) + sin.calculate(x, precision))) / (Math.pow(csc.calculate(x, precision), 3)))) / (sin.calculate(x, precision)))), 3), 2));
         } else {
             result = (Math.pow((((log_3.calculate(x, precision) + log_3.calculate(x, precision)) - log_2.calculate(x, precision)) / log_3.calculate(x, precision)), 2) *
-            (Math.pow(log_5.calculate(x, precision), 3) - log_2.calculate(x, precision)));
+                    (Math.pow(log_5.calculate(x, precision), 3) - log_2.calculate(x, precision)));
         }
         return result;
     }
