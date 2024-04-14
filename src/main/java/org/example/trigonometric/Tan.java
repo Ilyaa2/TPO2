@@ -4,12 +4,14 @@ public class Tan {
 
 
     private Sin sin;
-    public Tan(Sin sin){
+
+    public Tan(Sin sin) {
         this.sin = sin;
     }
 
     public double calculate(double x, double precision) {
-        return sin.calculate(x,precision) / (1- Math.pow(sin.calculate(x,precision), 2));
+        Cos cos = new Cos(sin);
+        return sin.calculate(x, precision) / cos.calculate(x, precision);
     }
 
 }

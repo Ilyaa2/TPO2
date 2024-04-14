@@ -7,8 +7,9 @@ public class Cot {
     public Cot(Sin sin) {
         this.sin = sin;
     }
+
     public double calculate(double x, double precision) {
         Tan tan = new Tan(sin);
-        return 1/ tan.calculate(x, precision);
+        return 1 / tan.calculate(x, precision);
     }
 }

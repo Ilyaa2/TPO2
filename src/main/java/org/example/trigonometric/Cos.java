@@ -8,7 +8,7 @@ public class Cos {
     }
 
     public double calculate(double x, double precision) {
-        return 1 - Math.pow(sin.calculate(x, precision), 2);
+        return Math.sqrt(1 - Math.pow(sin.calculate(x, precision), 2));
     }
 
 

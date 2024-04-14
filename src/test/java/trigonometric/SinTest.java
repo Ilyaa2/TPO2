@@ -11,8 +11,8 @@ public class SinTest {
     @Test
     public void sinTest() {
         Sin sin = new Sin();
-        double precision = 0.001;
-        double angle = Math.PI / 4;
+        double precision = 0.0001;
+        double angle = Math.PI / 2;
         boolean expected = false;
 
         double sinDiff = Math.abs(sin.calculate(angle, precision) - Math.sin(angle));
