@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static java.lang.Double.NaN;
+import static java.lang.Double.isNaN;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,9 +43,9 @@ public class FunctionsSystemTest {
         double precision = 0.0001;
         double expectedResult = 0.2277;
 
-        when(mockLog2.calculate(0.2, precision)).thenReturn(Math.log(0.2) / Math.log(2));
-        when(mockLog3.calculate(0.2, precision)).thenReturn(Math.log(0.2) / Math.log(3));
-        when(mockLog5.calculate(0.2, precision)).thenReturn(Math.log(0.2) / Math.log(5));
+        when(mockLog2.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(2));
+        when(mockLog3.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(3));
+        when(mockLog5.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(5));
 
         FunctionsSystem functionsSystem = new FunctionsSystem(mockSin, mockCos, mockTan, mockCot, mockSec, mockCsc, mockLog3, mockLog5, mockLog2, mockLn);
 
@@ -52,6 +53,76 @@ public class FunctionsSystemTest {
         var diff = Math.abs(expectedResult - result);
         //System.out.println(result);
         Assertions.assertTrue(diff <= precision);
+    }
+
+    @Test
+    void asymptoteTest1(){
+        double input = 0.015;
+        double precision = 0.000000000000001;
+        double expectedResult = -2.017;
+
+        when(mockLog2.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(2));
+        when(mockLog3.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(3));
+        when(mockLog5.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(5));
+
+        FunctionsSystem functionsSystem = new FunctionsSystem(mockSin, mockCos, mockTan, mockCot, mockSec, mockCsc, mockLog3, mockLog5, mockLog2, mockLn);
+
+        var result = functionsSystem.calculate(input, precision);
+        var diff = Math.abs(expectedResult - result);
+        System.out.println(result);
+        Assertions.assertTrue(diff <= 0.0001);
+    }
+
+    @Test
+    void asymptoteTest2(){
+        double input = 4;
+        double precision = 0.000000000000001;
+        double expectedResult = -0.234;
+
+        when(mockLog2.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(2));
+        when(mockLog3.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(3));
+        when(mockLog5.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(5));
+
+        FunctionsSystem functionsSystem = new FunctionsSystem(mockSin, mockCos, mockTan, mockCot, mockSec, mockCsc, mockLog3, mockLog5, mockLog2, mockLn);
+
+        var result = functionsSystem.calculate(input, precision);
+        var diff = Math.abs(expectedResult - result);
+        System.out.println(result);
+        Assertions.assertTrue(diff <= 0.001);
+    }
+
+    @Test
+    void undefinedTest(){
+        double input = 1;
+        double precision = 0.000000000000001;
+
+        when(mockLog2.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(2));
+        when(mockLog3.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(3));
+        when(mockLog5.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(5));
+
+        FunctionsSystem functionsSystem = new FunctionsSystem(mockSin, mockCos, mockTan, mockCot, mockSec, mockCsc, mockLog3, mockLog5, mockLog2, mockLn);
+
+        var result = functionsSystem.calculate(input, precision);
+        System.out.println(result);
+        Assertions.assertTrue(isNaN(result));
+    }
+
+    @Test
+    void ZeroTest(){
+        double input = 11.61;
+        double precision = 0.000000000000001;
+        double expectedResult = 0;
+
+        when(mockLog2.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(2));
+        when(mockLog3.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(3));
+        when(mockLog5.calculate(input, precision)).thenReturn(Math.log(input) / Math.log(5));
+
+        FunctionsSystem functionsSystem = new FunctionsSystem(mockSin, mockCos, mockTan, mockCot, mockSec, mockCsc, mockLog3, mockLog5, mockLog2, mockLn);
+
+        var result = functionsSystem.calculate(input, precision);
+        var diff = Math.abs(expectedResult - result);
+        System.out.println(result);
+        Assertions.assertTrue(diff <= 0.001);
     }
 
     @Test
