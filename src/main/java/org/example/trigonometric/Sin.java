@@ -1,10 +1,7 @@
 package org.example.trigonometric;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
+import static java.lang.Double.isNaN;
 
-import java.io.IOException;
-import java.io.Writer;
 
 public class Sin {
 
@@ -15,6 +12,9 @@ public class Sin {
         int n = 1;
 
         while (Math.abs(term) >= precision) {
+            if (isNaN(sinX)) {
+                return sinX;
+            }
             sinX += term;
             n += 2;
             sign *= -1;

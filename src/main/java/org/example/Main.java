@@ -35,7 +35,7 @@ public class Main {
             var listLog3 = new ArrayList<CsvWriter.Pair>();
             var listLog5 = new ArrayList<CsvWriter.Pair>();
             var listLn = new ArrayList<CsvWriter.Pair>();
-            for (double i = 0.1; i <= 2d; i += 0.1) {
+            for (double i = 0.1; i <= 11d; i += 0.1) {
                 listLog2.add(new CsvWriter.Pair(i, log2.calculate(i, precision)));
                 listLog3.add(new CsvWriter.Pair(i, log3.calculate(i, precision)));
                 listLog5.add(new CsvWriter.Pair(i, log5.calculate(i, precision)));
@@ -72,7 +72,7 @@ public class Main {
             ArrayList<CsvWriter.Pair> listCot = new ArrayList<>();
             ArrayList<CsvWriter.Pair> listSec = new ArrayList<>();
             ArrayList<CsvWriter.Pair> listCsc = new ArrayList<>();
-            for (double i = 0.1; i <= 2d; i += 0.1) {
+            for (double i = -1; i <= 1d; i += 0.1) {
                 listSin.add(new CsvWriter.Pair(i, sin.calculate(i, precision)));
                 listCos.add(new CsvWriter.Pair(i, cos.calculate(i, precision)));
                 listTan.add(new CsvWriter.Pair(i, tan.calculate(i, precision)));
@@ -100,7 +100,7 @@ public class Main {
             Ln ln = new Ln();
             var functionsSystem = new FunctionsSystem(sin, new Cos(sin), new Tan(sin), new Cot(sin), new Sec(sin), new Csc(sin), new Log(ln, 3), new Log(ln, 5), new Log(ln, 2), ln);
             var functionsResultList = new ArrayList<CsvWriter.Pair>();
-            for (double i = 0.1; i <= 2d; i += 0.1) {
+            for (double i = -10d; i <= 10d; i += 0.1) {
                 functionsResultList.add(new CsvWriter.Pair(i, functionsSystem.calculate(i, precision)));
             }
             CsvWriter.writeResultToCSV(functionsResultList, FunctionsSystemFile);
