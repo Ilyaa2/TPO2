@@ -34,4 +34,21 @@ public class SecTest {
         Assertions.assertTrue(expected);
 
     }
+    @Test
+    void secTest1() {
+        double angle = 0;
+        double precision = 0.0001;
+        double sinResult = 0;
+        boolean expected = false;
+
+        when(mockSin.calculate(angle, precision)).thenReturn(sinResult);
+
+        Sec sec = new Sec(mockSin);
+
+        double tanDiff = Math.abs(sec.calculate(angle, precision) - 1 / Math.cos(angle));
+
+        if (tanDiff <= precision) expected = true;
+        Assertions.assertTrue(expected);
+
+    }
 }

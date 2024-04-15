@@ -35,4 +35,21 @@ public class TanTest {
         Assertions.assertTrue(expected);
     }
 
+    @Test
+    void tanTest1() {
+        double angle = 0;
+        double precision = 0.0001;
+        double sinResult = 0;
+        boolean expected = false;
+
+        when(mockSin.calculate(angle, precision)).thenReturn(sinResult);
+
+        Tan tan = new Tan(mockSin);
+
+        double tanDiff = Math.abs(tan.calculate(angle, precision) - Math.tan(angle));
+
+        if (tanDiff <= precision) expected = true;
+        Assertions.assertTrue(expected);
+    }
+
 }

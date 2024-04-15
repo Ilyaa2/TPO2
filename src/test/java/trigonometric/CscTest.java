@@ -34,4 +34,21 @@ public class CscTest {
         if (tanDiff <= precision) expected = true;
         Assertions.assertTrue(expected);
     }
+
+    @Test
+    void cscTest1() {
+        double angle = Math.PI / 2;
+        double precision = 0.0001;
+        double sinResult = 1;
+        boolean expected = false;
+
+        when(mockSin.calculate(angle, precision)).thenReturn(sinResult);
+
+        Csc csc = new Csc(mockSin);
+
+        double tanDiff = Math.abs(csc.calculate(angle, precision) - 1 / Math.sin(angle));
+
+        if (tanDiff <= precision) expected = true;
+        Assertions.assertTrue(expected);
+    }
 }

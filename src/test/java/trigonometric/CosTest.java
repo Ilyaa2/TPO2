@@ -32,4 +32,20 @@ public class CosTest {
         if (tanDiff <= precision) expected = true;
         Assertions.assertTrue(expected);
     }
+
+    @Test
+    void cosTest1() {
+        double angle = Math.PI / 2;
+        double precision = 0.0001;
+        double sinResult = 1;
+        boolean expected = false;
+        when(mockSin.calculate(angle, precision)).thenReturn(sinResult);
+
+        Cos cos = new Cos(mockSin);
+
+        double tanDiff = Math.abs(cos.calculate(angle, precision) - Math.cos(angle));
+
+        if (tanDiff <= precision) expected = true;
+        Assertions.assertTrue(expected);
+    }
 }
