@@ -72,7 +72,7 @@ public class Main {
             ArrayList<CsvWriter.Pair> listCot = new ArrayList<>();
             ArrayList<CsvWriter.Pair> listSec = new ArrayList<>();
             ArrayList<CsvWriter.Pair> listCsc = new ArrayList<>();
-            for (double i = -1; i <= 1d; i += 0.1) {
+            for (double i = -2.5; i <= 2.5; i += 0.1) {
                 listSin.add(new CsvWriter.Pair(i, sin.calculate(i, precision)));
                 listCos.add(new CsvWriter.Pair(i, cos.calculate(i, precision)));
                 listTan.add(new CsvWriter.Pair(i, tan.calculate(i, precision)));
