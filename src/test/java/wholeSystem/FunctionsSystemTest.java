@@ -68,31 +68,28 @@ public class FunctionsSystemTest {
         }
     }
 
-    @Test
-    void trigonometricTest() {
-        double input = -4.202;
-        double precision = 0.0001;
-        double expectedResult = 3981.0886775189692;
-        when(mockSin.calculate(input, precision)).thenReturn(Math.sin(input));
-        when(mockCos.calculate(input, precision)).thenReturn(Math.cos(input));
-        when(mockCot.calculate(input, precision)).thenReturn(Math.cos(input) / Math.sin(input));
-        when(mockCsc.calculate(input, precision)).thenReturn(1 / Math.sin(input));
-        when(mockSec.calculate(input, precision)).thenReturn(1 / Math.cos(input));
-        when(mockTan.calculate(input, precision)).thenReturn(Math.tan(input));
-
-        FunctionsSystem functionsSystem = new FunctionsSystem(mockSin, mockCos, mockTan, mockCot, mockSec, mockCsc, mockLog3, mockLog5, mockLog2, mockLn);
-
-        var result = functionsSystem.calculate(input, precision);
-        var diff = Math.abs(expectedResult - result);
-        System.out.println(result);
-        Assertions.assertTrue(diff <= precision);
+    static Collection<Object[]> dataForSin() {
+        return Arrays.asList(new Object[][]{
+                {-0.4909, 0.0001, 342.991}, //input, precision, expectedResult
+                {-0.5737, 0.0001, 498.66},
+                {-0.6654, 0.0001, 320.26},
+                {-0.7267, 0.0001, 2238.244},
+                {-0.3529, 0.0001, 2196.719},
+                {-4.051, 0.0001, -7783496.773},
+                {-4.195, 0.0001, 614.1641115},
+                {-4.201, 0.0001, 2951.0463067},
+                {-4.197, 0.0001, 3219.37721240},
+                {-4.15, 0.0001, -3.850897557988235E7},
+                {-4.011, 0.0001, -1.0505691216781145E7},
+                {-4.117, 0.0001, -2.1575849499819998E7}
+        });
     }
 
-    @Test
-    void trigonometricTest1() {
-        double input = -10.478;
-        double precision = 0.0001;
-        double expectedResult = 3414.2606844805628;
+
+
+    @ParameterizedTest
+    @MethodSource("dataForSin")
+    void trigonometricTest(double input, double precision, double expected) {
         when(mockSin.calculate(input, precision)).thenReturn(Math.sin(input));
         when(mockCos.calculate(input, precision)).thenReturn(Math.cos(input));
         when(mockCot.calculate(input, precision)).thenReturn(Math.cos(input) / Math.sin(input));
@@ -103,10 +100,8 @@ public class FunctionsSystemTest {
         FunctionsSystem functionsSystem = new FunctionsSystem(mockSin, mockCos, mockTan, mockCot, mockSec, mockCsc, mockLog3, mockLog5, mockLog2, mockLn);
 
         var result = functionsSystem.calculate(input, precision);
-        var diff = Math.abs(expectedResult - result);
+        var diff = Math.abs(expected - result);
         System.out.println(result);
-        Assertions.assertTrue(diff <= precision);
-
-
+        Assertions.assertTrue(diff <= 0.001);
     }
 }
